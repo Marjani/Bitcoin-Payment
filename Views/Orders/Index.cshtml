@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Marjani.Peyment.Bitcoin.Models.OrderItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Marjani Bitcoin Payment Sample - Orders</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+    <!-- Custom styles for this template -->
+    <link href="/Content/jumbotron-narrow.css" rel="stylesheet" />
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/">Create Order</a></li>
+                    <li role="presentation" class="active"><a href="/Orders">Orders</a></li>
+                    <li role="presentation"><a href="http://marjani.net">Marjani.net</a></li>
+                </ul>
+            </nav>
+            <h1 class="text-muted">Marjani Bitcoin payment</h1>
+            <small>(sample)</small>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsPayed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.confirmations)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PayOn)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsPayed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.confirmations)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayOn)
+                    </td>
+                    <td>
+                        @if (!item.IsPayed)
+                        {
+                            @Html.ActionLink("Pay", "Payment", new { controller = "Checkout", id = item.Id });
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+        <footer class="footer">
+            <p>&copy; 2016 <a href="http://marjani.net">Marjani.net</a></p>
+        </footer>
+
+    </div>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <!-- /container -->
+</body>
+</html>
